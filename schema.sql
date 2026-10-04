@@ -1,0 +1,33 @@
+CREATE TABLE IF NOT EXISTS Faculty (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    email TEXT
+);
+
+CREATE TABLE IF NOT EXISTS Student (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    email TEXT
+);
+
+CREATE TABLE IF NOT EXISTS Course (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Department TEXT,
+    Number TEXT,
+    Credits INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS Section (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Course_ID INTEGER,
+    FOREIGN KEY (Course_ID) REFERENCES Course(id)
+);
+
+CREATE TABLE IF NOT EXISTS Enrollment (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Student_ID INTEGER,
+    Section_ID INTEGER,
+    Grade TEXT,
+    FOREIGN KEY (Student_ID) REFERENCES Student(id),
+    FOREIGN KEY (Section_ID) REFERENCES Section(id)
+);
